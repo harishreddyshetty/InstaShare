@@ -1,0 +1,112 @@
+.nav-bar-mob {
+  display: flex;
+  align-items: center;
+  height: 24px;
+  margin-left: 24px;
+  margin-right: 24px;
+  margin-top: 26px;
+  padding: 0px;
+}
+
+.nav-bar-logo {
+  width: 55px;
+  height: 28px;
+  margin-right: 12px;
+}
+
+@media screen and (min-width: 992px) {
+  .nav-bar-logo {
+    width: 59px;
+    height: 30px;
+  }
+}
+
+.heading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 24px;
+  color: #262626;
+  width: 92px;
+}
+
+.hamburger-btn {
+  background-color: transparent;
+  border: 0px none;
+  height: 24px;
+  width: 24px;
+  margin-left: auto;
+  cursor: pointer;
+}
+
+.menu-list-items {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  padding-left: 0px;
+}
+
+.list-element {
+  margin-left: 0px;
+  padding-left: 0px;
+  margin-right: 16px;
+  padding-right: 0px;
+}
+
+.active-tab {
+  color: #4094ef;
+  background-color: transparent;
+  border: 0px none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+}
+.non-active-tab {
+  color: #262626;
+  background-color: transparent;
+  border: 0px none;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  cursor: pointer;
+}
+
+.menu-container {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.logout-btn {
+  width: 82px;
+  height: 32px;
+  border: 0px none;
+  background-color: #4094ef;
+  padding: 8px 24px;
+  border-radius: 4px;
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.close-btn {
+  background-color: transparent;
+  border: 0px none;
+  cursor: pointer;
+  margin-left: 0px;
+  padding-left: 0px;
+  margin-right: 24px;
+  margin-left: 20px;
+  cursor: pointer;
+}
