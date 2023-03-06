@@ -1,6 +1,6 @@
 import {Component} from 'react'
 import Cookie from 'js-cookie'
-// import {FiAlertTriangle} from 'react-icons/fi'
+
 import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import ReactSlick from '../ReactSlick'
@@ -126,8 +126,44 @@ class HomeRoute extends Component {
     }
   }
 
+  //   renderSearchResults = searchData => (
+  //     <ul>
+  //       {searchData.map(eachPost => (
+  //         <UsersPostItem postData={eachPost} key={eachPost.postId} />
+  //       ))}
+  //     </ul>
+  //   )
+
+  //   renderSearchPage = () => (
+  //     <InstaShareContext.Consumer>
+  //       {value => {
+  //         const {searchData} = value
+  //         const searchTotal = searchData.length
+
+  //         return searchTotal ? this.renderSearchResults(searchData) : 'nill'
+  //       }}
+  //     </InstaShareContext.Consumer>
+  //   )
+
   render() {
     return (
+      //   <InstaShareContext.Consumer>
+      //     {value => {
+      //       const {searchInput} = value
+
+      //       return (
+      //         <div>
+      //           <Header />
+      //           {searchInput.length > 0 ? null : <ReactSlick className="slick" />}
+      //           <hr className="hr-line" />
+      //           {searchInput.length > 0
+      //             ? this.renderSearchPage()
+      //             : this.renderHomePage()}
+      //         </div>
+      //       )
+      //     }}
+      //   </InstaShareContext.Consumer>
+
       <div>
         <Header />
         <ReactSlick className="slick" />

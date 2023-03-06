@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import {Component} from 'react'
 import {withRouter, Link} from 'react-router-dom'
 import {FaSearch} from 'react-icons/fa'
@@ -12,7 +13,31 @@ const navItems = [
 ]
 
 class Header extends Component {
-  state = {activeTab: navItems[0].id, menuClicked: false, searchValue: ''}
+  state = {
+    activeTab: navItems[0].id,
+    menuClicked: false,
+    searchValue: '',
+    searchArray: [],
+  }
+
+  componentDidMount() {
+    this.getSearchData()
+  }
+
+  getSearchData = async () => {
+    const {searchValue} = this.state
+    const jwtToken = Cookie.get('jwt_token')
+    const url = `https://apis.ccbp.in/insta-share/posts?search=${searchValue}`
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwtToken}`,
+      },
+    }
+    const response = await fetch(url, options)
+    const data = await response.json()
+    this.setState({searchArray: data.posts})
+  }
 
   onClickMenu = () => {
     this.setState(prevState => ({menuClicked: !prevState.menuClicked}))
@@ -137,20 +162,17 @@ class Header extends Component {
   }
 
   renderDesktopHeader = () => {
-    const {searchValue} = this.state
+    const {searchValue, searchArray} = this.state
+    console.log(searchArray)
 
     return (
       <InstaShareContext.Consumer>
         {value => {
-          const {updateSearchInput} = value
-
-          const menuItems = navItems.filter(
-            eachItem => eachItem.id !== 'SEARCH',
-          )
-          const {activeTab} = this.state
+          const {updateSearchInput, updateSearchData} = value
 
           const onClickSearchIcon = () => {
             updateSearchInput(searchValue)
+            updateSearchData(searchArray)
           }
 
           const updateSearch = event => {
@@ -177,8 +199,9 @@ class Header extends Component {
                     type="search"
                     className="searchInput"
                   />
-                  {/* testid="searchIcon" */}
+
                   <button
+                    testid="searchIcon"
                     onClick={onClickSearchIcon}
                     className="search-icon-btn"
                     type="button"
@@ -188,34 +211,13 @@ class Header extends Component {
                 </div>
 
                 <ul className="menu-list-items">
-                  {menuItems.map(eachTab => {
-                    const activeTabItem = eachTab.id === activeTab
-                    const activeTabClass = activeTabItem
-                      ? 'active-tab'
-                      : 'non-active-tab'
+                  <Link to="/">
+                    <li>Home</li>
+                  </Link>
 
-                    const changeTab = () => {
-                      this.setState({activeTab: eachTab.id})
-                      const {history} = this.props
-                      if (eachTab.id === 'PROFILE') {
-                        history.push('/my-profile')
-                      } else if (eachTab.id === 'HOME') {
-                        history.push('/')
-                      }
-                    }
-
-                    return (
-                      <li className="list-element" key={eachTab.id}>
-                        <button
-                          onClick={changeTab}
-                          className={activeTabClass}
-                          type="button"
-                        >
-                          {eachTab.tabName}
-                        </button>
-                      </li>
-                    )
-                  })}
+                  <Link to="/my-profile">
+                    <li>Profile</li>
+                  </Link>
                 </ul>
 
                 <button

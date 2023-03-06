@@ -10,18 +10,27 @@ import NotFoundRoute from './components/NotFoundRoute'
 import InstaShareContext from './InstaShareContext'
 
 class App extends Component {
-  state = {searchInput: ''}
+  state = {searchInput: '', searchData: []}
 
   updateSearchInput = value => {
     this.setState({searchInput: value})
   }
 
+  updateSearchData = array => {
+    this.setState({searchData: array})
+  }
+
   render() {
-    const {searchInput} = this.state
+    const {searchInput, searchData} = this.state
 
     return (
       <InstaShareContext.Provider
-        value={{searchInput, updateSearchInput: this.updateSearchInput}}
+        value={{
+          searchInput,
+          searchData,
+          updateSearchInput: this.updateSearchInput,
+          updateSearchData: this.updateSearchData,
+        }}
       >
         <Switch>
           <Route exact path="/login" component={LoginRoute} />
