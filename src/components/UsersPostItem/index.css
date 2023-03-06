@@ -1,0 +1,170 @@
+.image-border-wrap {
+  background: linear-gradient(to right, #7700c3, #c60188, #e20337);
+  border-radius: 50px;
+  padding: 2px;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+.image-bg {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  height: 35px;
+  width: 35px;
+}
+
+.usersProfileDetails {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.post-username {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #262626;
+}
+.remove-line {
+  text-decoration: none;
+}
+.users-post {
+  border: 1px solid #dbdbdb;
+  margin-left: 200px;
+  margin-right: 200px;
+  width: 1040px;
+  margin-bottom: 32px;
+  border-radius: 5px;
+}
+
+.post-profile-pic {
+  height: 30px;
+  width: 30px;
+  border-radius: 50px;
+}
+
+.post-image {
+  width: 1040px;
+  height: 614px;
+}
+
+@media screen and (max-width: 767px) {
+  .post-image {
+    width: 360px;
+    height: 375px;
+  }
+  .users-post {
+    border: 0px none;
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 360px;
+    margin-bottom: 24px;
+    flex-grow: 1;
+  }
+}
+
+.bottom-container {
+  margin-left: 24px;
+  margin-top: 18px;
+  padding-left: 0px;
+}
+
+.icons-container {
+  display: flex;
+  align-items: center;
+  margin-left: 0px;
+  padding-left: 0px;
+  margin-right: 240px;
+}
+.like-icon {
+  margin-right: 18px;
+  cursor: pointer;
+  margin-left: 0px;
+  padding-left: 0px;
+  font-size: 20px;
+}
+
+.liked-icon {
+  font-size: 20px;
+  margin-right: 18px;
+  cursor: pointer;
+  color: #f05161;
+}
+.comment-icon {
+  height: 20px;
+  width: 22px;
+  margin-right: 18px;
+  cursor: pointer;
+}
+
+.share-icon {
+  height: 24px;
+  width: 24px;
+  margin-right: 18px;
+  cursor: pointer;
+}
+
+.icons-btn {
+  background-color: transparent;
+  border: 0px none;
+  cursor: pointer;
+
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+@media screen and (max-width: 767px) {
+  .icons-container {
+    margin-top: 15px;
+  }
+  .like-icon {
+    font-size: 20px;
+  }
+  .comment-icon {
+    height: 22px;
+    width: 23px;
+  }
+}
+
+.likes {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  color: #262626;
+}
+
+.caption {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #262626;
+}
+
+.comments-list {
+  list-style-type: none;
+  margin-left: 0px;
+  padding-left: 0px;
+}
+
+.created-at {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 18px;
+  color: #989898;
+}

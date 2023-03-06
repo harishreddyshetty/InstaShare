@@ -1,0 +1,21 @@
+.comment {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  margin-bottom: 8px;
+}
+
+.comment-username {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.comment-text {
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 18px;
+  margin-left: 5px;
+}

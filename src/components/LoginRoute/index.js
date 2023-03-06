@@ -7,8 +7,8 @@ class LoginRoute extends Component {
   state = {username: '', password: '', errorMsg: '', loginSuccess: true}
 
   onSuccess = jwtToken => {
-    const {history} = this.props
     Cookie.set('jwt_token', jwtToken, {expires: 30})
+    const {history} = this.props
     history.replace('/')
   }
 
@@ -74,7 +74,7 @@ class LoginRoute extends Component {
               placeholder="username"
             />
 
-            <label className="label" htmlFor="username">
+            <label className="label" htmlFor="password">
               PASSWORD
             </label>
             <input
