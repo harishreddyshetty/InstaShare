@@ -5,7 +5,7 @@ import Loader from 'react-loader-spinner'
 import Header from '../Header'
 import ReactSlick from '../ReactSlick'
 import UsersPostItem from '../UsersPostItem'
-// import InstaShareContext from '../../InstaShareContext'
+import InstaShareContext from '../../InstaShareContext'
 
 import './index.css'
 
@@ -126,50 +126,64 @@ class HomeRoute extends Component {
     }
   }
 
-  //   renderSearchResults = searchData => (
-  //     <ul>
-  //       {searchData.map(eachPost => (
-  //         <UsersPostItem postData={eachPost} key={eachPost.postId} />
-  //       ))}
-  //     </ul>
-  //   )
+  renderNoResults = () => (
+    <div className="noResults-container">
+      <img
+        className="noSearchFoundImg"
+        alt="search"
+        src="https://res.cloudinary.com/drl5lt54o/image/upload/v1678359524/InstaShare/Group_v326yd.png"
+      />
+      <p className="noSearchHeading">Search Not Found</p>
+      <p className="noSearchDescription">
+        Try different keyword or search again
+      </p>
+    </div>
+  )
 
-  //   renderSearchPage = () => (
-  //     <InstaShareContext.Consumer>
-  //       {value => {
-  //         const {searchData} = value
-  //         const searchTotal = searchData.length
-
-  //         return searchTotal ? this.renderSearchResults(searchData) : 'nill'
-  //       }}
-  //     </InstaShareContext.Consumer>
-  //   )
+  renderSearchResults = searchData => (
+    <>
+      {searchData.length > 0 ? (
+        <div>
+          <h1 className="search-heading">Search Results</h1>
+          <ul className="search-list">
+            {searchData.map(eachPost => (
+              <UsersPostItem postData={eachPost} key={eachPost.postId} />
+            ))}
+          </ul>
+        </div>
+      ) : (
+        this.renderNoResults()
+      )}
+    </>
+  )
 
   render() {
     return (
-      //   <InstaShareContext.Consumer>
-      //     {value => {
-      //       const {searchInput} = value
+      <InstaShareContext.Consumer>
+        {value => {
+          const {searchInput, searchData} = value
+          console.log(searchData)
 
-      //       return (
-      //         <div>
-      //           <Header />
-      //           {searchInput.length > 0 ? null : <ReactSlick className="slick" />}
-      //           <hr className="hr-line" />
-      //           {searchInput.length > 0
-      //             ? this.renderSearchPage()
-      //             : this.renderHomePage()}
-      //         </div>
-      //       )
-      //     }}
-      //   </InstaShareContext.Consumer>
+          return (
+            <div>
+              <Header />
+              {searchInput.length > 0 ? null : <ReactSlick className="slick" />}
+              <hr className="hr-line" />
+              {searchInput.length > 0
+                ? this.renderSearchResults(searchData)
+                : this.renderHomePage()}
+              {/* {this.renderHomePage()} */}
+            </div>
+          )
+        }}
+      </InstaShareContext.Consumer>
 
-      <div>
-        <Header />
-        <ReactSlick className="slick" />
-        <hr className="hr-line" />
-        {this.renderHomePage()}
-      </div>
+      //   <div>
+      //     <Header />
+      //     <ReactSlick className="slick" />
+      //     <hr className="hr-line" />
+      //     {this.renderHomePage()}
+      //   </div>
     )
   }
 }

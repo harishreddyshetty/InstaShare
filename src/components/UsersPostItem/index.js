@@ -29,8 +29,11 @@ class UsersPostItem extends Component {
     console.log(data)
   }
 
+  onClickLike = () => {
+    this.setState(prevState => ({liked: !prevState.liked}), this.onClickLikeBtn)
+  }
+
   render() {
-    const {liked} = this.state
     const {postData} = this.props
     const {
       profilePic,
@@ -43,12 +46,7 @@ class UsersPostItem extends Component {
     } = postData
     const {imageUrl, caption} = postDetails
 
-    const onClickLike = () => {
-      this.setState(
-        prevState => ({liked: !prevState.liked}),
-        this.onClickLikeBtn,
-      )
-    }
+    const {liked} = this.state
 
     return (
       <li className="users-post">
@@ -73,14 +71,14 @@ class UsersPostItem extends Component {
             <button
               // eslint-disable-next-line react/no-unknown-property
               testid="likeIcon"
-              onClick={onClickLike}
+              onClick={this.onClickLike}
               className="icons-btn"
               type="button"
             >
               {liked ? (
                 <BsHeartFill className="liked-icon" />
               ) : (
-                <BsHeart className="like-icon" onClick={onClickLike} />
+                <BsHeart className="like-icon" />
               )}
             </button>
             <button className="icons-btn" type="button">

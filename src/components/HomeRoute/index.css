@@ -79,3 +79,69 @@
     padding-right: 0px;
   }
 }
+
+.search-list {
+  margin-left: 0px;
+  padding-left: 0px;
+  list-style-type: none;
+}
+
+.noResults-container {
+  margin-left: 51px;
+  margin-right: 51px;
+  margin-top: 80px;
+}
+
+.noSearchHeading {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 32px;
+  text-align: center;
+  color: #262626;
+  margin-bottom: 0px;
+}
+
+.noSearchDescription {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: center;
+  width: 264px;
+  color: #989898;
+}
+.noSearchFoundImg {
+  width: 258px;
+  height: 210px;
+}
+
+@media screen and (min-width: 1440px) {
+  .search-heading {
+    font-size: 20px;
+    margin-left: 15px;
+    color: #262626;
+  }
+  .noResults-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .noSearchFoundImg {
+    width: 450px;
+    height: 350px;
+  }
+  .noSearchHeading {
+    font-size: 32px;
+    line-height: 48px;
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (max-width: 1440px) {
+  .search-heading {
+    display: none;
+  }
+}

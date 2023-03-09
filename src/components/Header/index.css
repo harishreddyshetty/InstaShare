@@ -25,11 +25,22 @@
   width: 92px;
 }
 
-.nav-bar-desk {
+.nav-items-container {
   display: none;
+}
+.nav-bar-desk {
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  margin-right: 24px;
 }
 
 @media screen and (min-width: 1440px) {
+  .nav-items-container {
+    display: flex;
+    align-items: center;
+  }
+
   .nav-bar-desk {
     display: flex;
     align-items: center;
@@ -37,9 +48,7 @@
     margin-right: 200px;
     margin-top: 17px;
   }
-  .nav-bar-mob {
-    display: none;
-  }
+
   .nav-bar-logo {
     width: 59px;
     height: 30px;
@@ -60,21 +69,46 @@
   cursor: pointer;
 }
 
-.menu-list-items {
-  list-style-type: none;
-  display: flex;
-  align-items: center;
-  margin-left: 24px;
-  padding-left: 0px;
+@media screen and (min-width: 1440px) {
+  .hamburger-btn {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 767px) {
   .hrline {
     display: none;
   }
+  .searchInput {
+    width: 244px;
+    height: 24px;
+    border: 0px none;
+    outline: none;
+    color: #989898;
+  }
+  .searchInputContainer {
+    width: 280px;
+    height: 28px;
+    border: 1px solid #dbdbdb;
+    border-radius: 5px;
+    margin-left: 24px;
+    margin-top: 20px;
+  }
+  .search-icon-btn {
+    width: 34px;
+    height: 26px;
+    background-color: #dbdbdb;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    border: 0px none;
+  }
+  .search-icon {
+    color: #989898;
+  }
 }
 
-@media screen and (min-width: 1140px) {
+@media screen and (min-width: 1440px) {
   .menu-list-items {
     margin-left: 33px;
     padding-left: 0px;
@@ -88,13 +122,13 @@
   .search-icon-btn {
     width: 34px;
     height: 27px;
-    background: #dbdbdb;
-    border: 0px none;
+    background-color: #dbdbdb;
     margin-left: 0px;
     padding-left: 0px;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 5px;
     cursor: pointer;
+    border: 0px none;
   }
   .search-icon {
     color: #989898;
@@ -152,6 +186,16 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 0px;
+}
+.menu-list-items {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  margin-left: 24px;
+  padding-left: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .logout-btn {
@@ -178,5 +222,19 @@
   padding-left: 0px;
   margin-right: 24px;
   margin-left: 20px;
+  cursor: pointer;
+}
+
+.remove-underline {
+  text-decoration: none;
+}
+
+.active-tab {
+  color: #4094ef;
+}
+
+.home-btn {
+  border: 0px none;
+  background-color: transparent;
   cursor: pointer;
 }

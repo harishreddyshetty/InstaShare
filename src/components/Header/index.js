@@ -24,6 +24,13 @@ class Header extends Component {
     this.getSearchData()
   }
 
+  updateComments = commentsData =>
+    commentsData.map(eachComment => ({
+      comment: eachComment.comment,
+      userId: eachComment.user_id,
+      userName: eachComment.user_name,
+    }))
+
   getSearchData = async () => {
     const {searchValue} = this.state
     const jwtToken = Cookie.get('jwt_token')
@@ -36,7 +43,22 @@ class Header extends Component {
     }
     const response = await fetch(url, options)
     const data = await response.json()
-    this.setState({searchArray: data.posts})
+    if (response.ok) {
+      const updatedData = data.posts.map(eachPost => ({
+        comments: this.updateComments(eachPost.comments),
+        createdAt: eachPost.created_at,
+        likesCount: eachPost.likes_count,
+        postDetails: {
+          caption: eachPost.post_details.caption,
+          imageUrl: eachPost.post_details.image_url,
+        },
+        postId: eachPost.post_id,
+        profilePic: eachPost.profile_pic,
+        userId: eachPost.user_id,
+        userName: eachPost.user_name,
+      }))
+      this.setState({searchArray: updatedData})
+    }
   }
 
   onClickMenu = () => {
@@ -91,6 +113,22 @@ class Header extends Component {
           })}
         </ul>
 
+        {/* <ul>
+          <Link to="/">
+            <li>
+              <button type="button">Home</button>
+            </li>
+          </Link>
+
+          <li>
+            <button type="button">Search </button>
+          </li>
+
+          <Link to="/my-profile">
+            <li>Profile</li>
+          </Link>
+        </ul> */}
+
         <button
           className="logout-btn"
           onClick={this.onClickLogout}
@@ -109,61 +147,22 @@ class Header extends Component {
     )
   }
 
-  renderSearch = () => (
-    <div>
-      <input
-        placeholder="Search Caption"
-        type="search"
-        className="searchInput"
-      />
-      {/* testid="searchIcon" */}
-      <button
-        // eslint-disable-next-line react/no-unknown-property
-        testid="searchIcon"
-        // onClick={onClickSearchIcon}
-        className="search-icon-btn"
-        type="button"
-      >
-        <FaSearch className="search-icon" />
-      </button>
-    </div>
-  )
+  updateSearch = event => {
+    this.setState({searchValue: event.target.value}, this.getSearchData)
+  }
 
-  renderMobileHeader = () => {
-    const {menuClicked, activeTab} = this.state
+  onClickHome = () => {
+    this.setState({activeTab: 'HOME'})
+  }
 
-    return (
-      <>
-        <nav className="nav-bar-mob">
-          <Link to="/">
-            <img
-              className="nav-bar-logo"
-              alt="website logo"
-              src="https://res.cloudinary.com/drl5lt54o/image/upload/v1677850135/InstaShare/LoginPage/Standard_Collection_8website_logo_spc6wr.png"
-            />
-          </Link>
-          <h1 className="heading">Insta Share</h1>
-          <button
-            onClick={this.onClickMenu}
-            className="hamburger-btn"
-            type="button"
-          >
-            <img
-              className="hamburger-icon"
-              alt="hamburger"
-              src="https://res.cloudinary.com/drl5lt54o/image/upload/v1677863792/InstaShare/menuhamburger_iaskyt.svg"
-            />
-          </button>
-        </nav>
-        {menuClicked && this.showMenu()}
-        {activeTab === 'SEARCH' && this.renderSearch()}
-      </>
-    )
+  onClickProfile = () => {
+    this.setState({activeTab: 'PROFILE'})
   }
 
   renderDesktopHeader = () => {
-    const {searchValue, searchArray} = this.state
-    console.log(searchArray)
+    const {searchValue, searchArray, menuClicked, activeTab} = this.state
+
+    // const activeTabHomeColor = activeTab === 'HOME' ? 'active-tab' : null
 
     return (
       <InstaShareContext.Consumer>
@@ -171,13 +170,30 @@ class Header extends Component {
           const {updateSearchInput, updateSearchData} = value
 
           const onClickSearchIcon = () => {
-            updateSearchInput(searchValue)
             updateSearchData(searchArray)
+            updateSearchInput(searchValue)
           }
 
-          const updateSearch = event => {
-            this.setState({searchValue: event.target.value})
-          }
+          const renderSearch = () => (
+            <div className="searchInputContainer">
+              <input
+                value={searchValue}
+                onChange={this.updateSearch}
+                placeholder="Search Caption"
+                type="search"
+                className="searchInput"
+              />
+
+              <button
+                testid="searchIcon"
+                onClick={onClickSearchIcon}
+                className="search-icon-btn"
+                type="button"
+              >
+                <FaSearch className="search-icon" />
+              </button>
+            </div>
+          )
 
           return (
             <>
@@ -190,45 +206,76 @@ class Header extends Component {
                   />
                 </Link>
                 <h1 className="heading">Insta Share</h1>
+                <div className="nav-items-container">
+                  <div className="searchInputContainer">
+                    <input
+                      value={searchValue}
+                      onChange={this.updateSearch}
+                      placeholder="Search Caption"
+                      type="search"
+                      className="searchInput"
+                    />
 
-                <div className="searchInputContainer">
-                  <input
-                    value={searchValue}
-                    onChange={updateSearch}
-                    placeholder="Search Caption"
-                    type="search"
-                    className="searchInput"
-                  />
+                    <button
+                      testid="searchIcon"
+                      onClick={onClickSearchIcon}
+                      className="search-icon-btn"
+                      type="button"
+                    >
+                      <FaSearch className="search-icon" />
+                    </button>
+                  </div>
+
+                  <ul className="menu-list-items">
+                    <Link className="remove-underline" to="/">
+                      <li key="HOME">
+                        <button
+                          className="home-btn"
+                          onClick={this.onClickHome}
+                          type="button"
+                        >
+                          Home
+                        </button>
+                      </li>
+                    </Link>
+
+                    <Link className="remove-underline" to="/my-profile">
+                      <li key="PROFILE">
+                        <button
+                          className="home-btn"
+                          onClick={this.onClickProfile}
+                          type="button"
+                        >
+                          Profile
+                        </button>
+                      </li>
+                    </Link>
+                  </ul>
 
                   <button
-                    testid="searchIcon"
-                    onClick={onClickSearchIcon}
-                    className="search-icon-btn"
+                    className="logout-btn"
+                    onClick={this.onClickLogout}
                     type="button"
                   >
-                    <FaSearch className="search-icon" />
+                    Logout
                   </button>
                 </div>
 
-                <ul className="menu-list-items">
-                  <Link to="/">
-                    <li>Home</li>
-                  </Link>
-
-                  <Link to="/my-profile">
-                    <li>Profile</li>
-                  </Link>
-                </ul>
-
                 <button
-                  className="logout-btn"
-                  onClick={this.onClickLogout}
+                  onClick={this.onClickMenu}
+                  className="hamburger-btn"
                   type="button"
                 >
-                  Logout
+                  <img
+                    className="hamburger-icon"
+                    alt="hamburger"
+                    src="https://res.cloudinary.com/drl5lt54o/image/upload/v1677863792/InstaShare/menuhamburger_iaskyt.svg"
+                  />
                 </button>
               </nav>
               <hr className="hrline" />
+              {menuClicked && this.showMenu()}
+              {activeTab === 'SEARCH' && renderSearch()}
             </>
           )
         }}
@@ -237,12 +284,7 @@ class Header extends Component {
   }
 
   render() {
-    return (
-      <>
-        {this.renderMobileHeader()}
-        {this.renderDesktopHeader()}
-      </>
-    )
+    return <>{this.renderDesktopHeader()}</>
   }
 }
 
