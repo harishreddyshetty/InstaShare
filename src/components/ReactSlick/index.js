@@ -81,7 +81,8 @@ class ReactSlick extends Component {
   }
 
   renderLoader = () => (
-    <div className="loader-container">
+    // eslint-disable-next-line react/no-unknown-property
+    <div testid="loader" className="loader-container">
       <Loader type="TailSpin" color="#4094EF" height={50} width={50} />
     </div>
   )
@@ -95,7 +96,7 @@ class ReactSlick extends Component {
           const {userId, storyUrl, userName} = eachLogo
           return (
             <div className="slick-item" key={userId}>
-              <img className="story-image" src={storyUrl} alt="story" />
+              <img className="story-image" src={storyUrl} alt="user story" />
               <p className="story-username">{userName}</p>
             </div>
           )

@@ -157,6 +157,7 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 24px;
+  cursor: pointer;
 }
 
 /* @media screen and (max-width: 991px) {

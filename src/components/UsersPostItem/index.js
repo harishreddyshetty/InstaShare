@@ -3,7 +3,8 @@ import {Component} from 'react'
 import {Link} from 'react-router-dom'
 import Cookie from 'js-cookie'
 
-import {BsHeart, BsHeartFill} from 'react-icons/bs'
+import {BsHeart} from 'react-icons/bs'
+import {FcLike} from 'react-icons/fc'
 import {FaRegComment} from 'react-icons/fa'
 import {BiShareAlt} from 'react-icons/bi'
 import Comments from '../Comments'
@@ -68,7 +69,7 @@ class UsersPostItem extends Component {
         <img className="post-image" alt="post" src={imageUrl} />
         <div className="bottom-container">
           <div className="icons-container">
-            <button
+            {/* <button
               // eslint-disable-next-line react/no-unknown-property
               testid="likeIcon"
               onClick={this.onClickLike}
@@ -80,7 +81,30 @@ class UsersPostItem extends Component {
               ) : (
                 <BsHeart className="like-icon" />
               )}
-            </button>
+            </button> */}
+
+            {liked ? (
+              <button
+                onClick={this.onClickLike}
+                // eslint-disable-next-line react/no-unknown-property
+                testid="unLikeIcon"
+                type="button"
+                className="icons-btn"
+              >
+                <FcLike className="liked-icon" />
+              </button>
+            ) : (
+              <button
+                className="icons-btn"
+                onClick={this.onClickLike}
+                // eslint-disable-next-line react/no-unknown-property
+                testid="likeIcon"
+                type="button"
+              >
+                <BsHeart className="like-icon" />
+              </button>
+            )}
+
             <button className="icons-btn" type="button">
               <FaRegComment className="comment-icon" />
             </button>

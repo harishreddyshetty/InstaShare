@@ -130,10 +130,10 @@ class HomeRoute extends Component {
     <div className="noResults-container">
       <img
         className="noSearchFoundImg"
-        alt="search"
+        alt="search not found"
         src="https://res.cloudinary.com/drl5lt54o/image/upload/v1678359524/InstaShare/Group_v326yd.png"
       />
-      <p className="noSearchHeading">Search Not Found</p>
+      <h1 className="noSearchHeading">Search Not Found</h1>
       <p className="noSearchDescription">
         Try different keyword or search again
       </p>
@@ -172,7 +172,6 @@ class HomeRoute extends Component {
               {searchInput.length > 0
                 ? this.renderSearchResults(searchData)
                 : this.renderHomePage()}
-              {/* {this.renderHomePage()} */}
             </div>
           )
         }}

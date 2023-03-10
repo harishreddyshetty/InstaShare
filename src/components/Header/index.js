@@ -159,7 +159,7 @@ class Header extends Component {
     this.setState({activeTab: 'PROFILE'})
   }
 
-  renderDesktopHeader = () => {
+  renderHeader = () => {
     const {searchValue, searchArray, menuClicked, activeTab} = this.state
 
     // const activeTabHomeColor = activeTab === 'HOME' ? 'active-tab' : null
@@ -284,7 +284,7 @@ class Header extends Component {
   }
 
   render() {
-    return <>{this.renderDesktopHeader()}</>
+    return <>{this.renderHeader()}</>
   }
 }
 
